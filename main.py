@@ -5,12 +5,12 @@ today = date.today()
 today = today.strftime("%d/%m/%y")
 
 def update_date():
-    with open("C:/Users/Rohith/Desktop/app_draw/test_date.txt","w") as file:
+    with open("test_date.txt","w") as file:
         str = today
         file.write(today)
 
 def read_date():
-    with open("C:/Users/Rohith/Desktop/app_draw/test_date.txt","r") as file:
+    with open("test_date.txt","r") as file:
         return file.readline()
 
 def app():
@@ -22,7 +22,7 @@ def app():
 
     update_date()
 
-    file_path = "C:/Users/Rohith/Desktop/app_draw/test.txt"
+    file_path = "test.txt"
 
     def reg_up():
         with open(file_path,"a") as f:
