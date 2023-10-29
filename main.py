@@ -1,22 +1,27 @@
 from tkinter import *
 from datetime import date
+from datetime import datetime
+from datetime import timedelta
 
 today = date.today()
-today = today.strftime("%d/%m/%y")
+today_str = today.strftime("%d/%m/%y")
 
 
 
 def update_date():
     with open("test_date.txt","w") as file: 
-        file.write(today)
+        file.write(today_str)
 
 def read_date():
     with open("test_date.txt","r") as file:
         return file.readline()
  
 ans = read_date()
-missed_days = int(today[0:2]) - int(ans[0:2])
-
+var = "How was your day on " + ans
+last_date = datetime.strptime(ans,"%d/%m/%y")
+last_date = last_date.date()
+missed_days = today - last_date
+missed_days = missed_days.days
 
 def app():
     window = Tk()
@@ -36,8 +41,12 @@ def app():
         with open(file_path,"a") as f:
             f.write("1,")
         global missed_days
+        global Title
         if(missed_days != 0):
             missed_days = missed_days - 1
+            day_iter = timedelta(days = missed_days)
+            var = "How was your day on " + str(last_date + day_iter) 
+            Title["text"] = var
         if(missed_days == 0):
             kill()
 
@@ -45,8 +54,12 @@ def app():
         with open(file_path,"a") as f:
             f.write("-1,")
         global missed_days
+        global Title
         if(missed_days != 0):
             missed_days = missed_days - 1
+            day_iter = timedelta(days = missed_days)
+            var = "How was your day on " + str(last_date + day_iter) 
+            Title["text"] = var
         if(missed_days == 0):
             kill()
 
@@ -54,19 +67,28 @@ def app():
         with open(file_path,"a") as f:
             f.write("0,")
         global missed_days
+        global Title
         if(missed_days != 0):
             missed_days = missed_days - 1
+            day_iter = timedelta(days = missed_days)
+            var = "How was your day on " + str(last_date + day_iter) 
+            Title["text"] = var
         if(missed_days == 0):
             kill()
-
     
-
+    global last_date
+    global missed_days
+    global Title
+    day_iter = timedelta(days = missed_days)
+    var = "How was your day on " + str(last_date + day_iter)
+    Title = Label(window,text = var)
     buttonu = Button(window, text="Up",command=reg_up )
     buttonm = Button(window, text="mid",command=reg_mid )
     buttond = Button(window, text="down",command=reg_down )
-    buttonu.pack(pady=20)
-    buttonm.pack(pady=60)
-    buttond.pack(pady=100)
+    buttonu.grid(row= 1 )
+    buttonm.grid(row= 2 )
+    buttond.grid(row= 3 )
+    Title.grid(row= 0)
     window.mainloop()
 
 def main():
