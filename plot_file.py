@@ -10,12 +10,19 @@ def year_make(list_val):
     return true_val
 
 
+def calcu_year(list_val):
+    ans = 0
+    list_v = [int(i)*0.01 for i in list_val]
+    for i in list_v:
+        ans = ans + i
+    return ans
+
 with open("test.txt", "r") as f:
     comma_sep = f.readline()
     value_list = comma_sep.split(",")
     value_list.pop()
     to_print = year_make(value_list)
-    print(to_print)
+    plt.title("Improvement of " + str(calcu_year(value_list)))
     plt.plot(to_print)
     plt.show()
 
