@@ -92,7 +92,7 @@ def app():
     window.mainloop()
 
 def main():
-    if(read_date() != today):
+    if(read_date() != today_str):
         app()
     else:
         exit()
