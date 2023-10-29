@@ -93,7 +93,9 @@ def app():
 
 def main():
     if(read_date() != today_str):
-        app()
+        tomorrow = timedelta(days = 1)
+        if(last_date + tomorrow != today):
+            app()
     else:
         exit()
 
