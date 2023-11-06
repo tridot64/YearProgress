@@ -76,6 +76,9 @@ def app():
         if(missed_days == 0):
             kill()
     
+    def snooze():
+        window.destroy()
+
     global last_date
     global missed_days
     global Title
@@ -85,10 +88,12 @@ def app():
     buttonu = Button(window, text="Up",command=reg_up )
     buttonm = Button(window, text="mid",command=reg_mid )
     buttond = Button(window, text="down",command=reg_down )
-    buttonu.grid(row= 1 )
-    buttonm.grid(row= 2 )
-    buttond.grid(row= 3 )
-    Title.grid(row= 0)
+    buttons = Button(window, text="snooze",command =snooze)
+    buttonu.grid(row= 1,column=0)
+    buttonm.grid(row= 2,column=0)
+    buttond.grid(row= 3,column=0)
+    buttons.grid(row=3,column=0)
+    Title.grid(row= 0,column=0)
     window.mainloop()
 
 def main():
