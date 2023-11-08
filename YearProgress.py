@@ -2,18 +2,19 @@ from tkinter import *
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
+from pathlib import Path
 
 today = date.today()
 today_str = today.strftime("%d/%m/%y")
 
-
+home = str(Path.home())
 
 def update_date():
-    with open("test_date.txt","w") as file: 
+    with open(home + "\\AppData\\Local\\YearProgress\\curr_date.txt","w") as file: 
         file.write(today_str)
 
 def read_date():
-    with open("test_date.txt","r") as file:
+    with open(home + "\\AppData\\Local\\YearProgress\\curr_date.txt","r") as file:
         return file.readline()
  
 ans = read_date()
@@ -23,6 +24,7 @@ last_date = last_date.date()
 missed_days = today - last_date
 missed_days = missed_days.days
 
+
 def app():
     window = Tk()
 
@@ -30,7 +32,8 @@ def app():
 
     window.attributes('-fullscreen',True)
 
-    file_path = "test.txt"
+    global home
+    file_path = home + "\\AppData\\Local\\YearProgress\\test.txt"
  
 
     def kill():
@@ -75,7 +78,7 @@ def app():
             Title["text"] = var
         if(missed_days == 0):
             kill()
-    
+
     def snooze():
         buttons.grid_remove()
         global missed_days
@@ -86,6 +89,7 @@ def app():
         day_iter = timedelta(days = missed_days)
         var = "How was your day on " + str(last_date + day_iter) 
         Title["text"] = var
+        
 
     global last_date
     global missed_days
@@ -100,7 +104,7 @@ def app():
     buttonu.grid(row= 1,column=0)
     buttonm.grid(row= 2,column=0)
     buttond.grid(row= 3,column=0)
-    buttons.grid(row=3,column=0)
+    buttons.grid(row=4,column=0)
     Title.grid(row= 0,column=0)
     window.mainloop()
 

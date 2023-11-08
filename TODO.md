@@ -6,5 +6,5 @@
  - [X] Day end prompt instead of morning
 
 # Future Scope
- - [ ] Automatic Installer
+ - [X] Automatic Installer
  - [ ] Installation Guide?
