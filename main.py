@@ -77,7 +77,15 @@ def app():
             kill()
     
     def snooze():
-        window.destroy()
+        buttons.grid_remove()
+        global missed_days
+        if(missed_days == 1):
+            window.destroy()
+        global Title
+        missed_days = missed_days - 1
+        day_iter = timedelta(days = missed_days)
+        var = "How was your day on " + str(last_date + day_iter) 
+        Title["text"] = var
 
     global last_date
     global missed_days
@@ -98,9 +106,7 @@ def app():
 
 def main():
     if(read_date() != today_str):
-        tomorrow = timedelta(days = 1)
-        if(last_date + tomorrow != today):
-            app()
+        app()
     else:
         exit()
 
